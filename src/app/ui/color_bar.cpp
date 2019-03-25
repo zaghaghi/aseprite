@@ -1261,6 +1261,7 @@ void ColorBar::showPaletteSortOptions()
     grn("Sort by Green"),
     blu("Sort by Blue"),
     alp("Sort by Alpha"),
+    tss("Sort by Trv. Salesman"),
     asc("Ascending"),
     des("Descending");
   menu.addChild(&rev);
@@ -1275,6 +1276,8 @@ void ColorBar::showPaletteSortOptions()
   menu.addChild(&grn);
   menu.addChild(&blu);
   menu.addChild(&alp);
+  menu.addChild(new ui::MenuSeparator);
+  menu.addChild(&tss);
   menu.addChild(new ui::MenuSeparator);
   menu.addChild(&asc);
   menu.addChild(&des);
@@ -1292,6 +1295,7 @@ void ColorBar::showPaletteSortOptions()
   grn.Click.connect(base::Bind<void>(&ColorBar::onSortBy, this, SortPaletteBy::GREEN));
   blu.Click.connect(base::Bind<void>(&ColorBar::onSortBy, this, SortPaletteBy::BLUE));
   alp.Click.connect(base::Bind<void>(&ColorBar::onSortBy, this, SortPaletteBy::ALPHA));
+  tss.Click.connect(base::Bind<void>(&ColorBar::onSortBy, this, SortPaletteBy::TRAVELLING_SALESMAN));
   asc.Click.connect(base::Bind<void>(&ColorBar::setAscending, this, true));
   des.Click.connect(base::Bind<void>(&ColorBar::setAscending, this, false));
 
