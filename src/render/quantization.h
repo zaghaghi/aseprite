@@ -31,16 +31,16 @@ namespace render {
   public:
     SubtotalPixelsCount() : m_colorCount(0)
     , m_color(0) {};
-    
+
     SubtotalPixelsCount(int colorCount, color_t color) : m_colorCount(colorCount)
     , m_color(color) {};
-    
+
     void SetColorCountAndColor(int colorCount, color_t color)
     {
       m_colorCount = colorCount;
       m_color = color;
     }
-    
+
     int GetColorCount() { return m_colorCount; }
     color_t GetColor() { return m_color; }
 
@@ -48,7 +48,7 @@ namespace render {
     int m_colorCount;
     color_t m_color;
   };
-  
+
   class Node{
   public:
     Node(): m_nodeLevel(0)
@@ -99,14 +99,14 @@ namespace render {
   };
 
   class Octree {
-    
+
   public:
     Octree() : m_palette(256)
     , m_root(0, true, 6, false)
     , m_levelDeep(6)
     {
     }
-    
+
     Octree(int targetQuantity, int levelDeep, bool withAlpha) : m_palette(targetQuantity)
     , m_root(0, true, levelDeep, withAlpha)
     {
@@ -141,7 +141,8 @@ namespace render {
     const bool withAlpha,
     doc::Palette* newPalette, // Can be NULL to create a new palette
     TaskDelegate* delegate,
-    const bool newBlend);
+    const bool newBlend,
+    bool octreeEnabled);
 
   // Changes the image pixel format. The dithering method is used only
   // when you want to convert from RGB to Indexed.

@@ -43,16 +43,16 @@ Palette* create_palette_from_sprite(
   const bool withAlpha,
   Palette* palette,
   TaskDelegate* delegate,
-  const bool newBlend)
+  const bool newBlend,
+  bool octreeEnabled)
 {
   PaletteOptimizer optimizer;
 
   if (!palette)
     palette = new Palette(fromFrame, 256);
-  
-  bool octreeEnabled = true;
+
   Octree octree(palette->size(), 6, withAlpha);
-  
+
   // Add a flat image with the current sprite's frame rendered
   ImageRef flat_image(Image::create(IMAGE_RGB,
       sprite->width(), sprite->height()));
@@ -642,7 +642,7 @@ void Node::GetLeavesCount(int &leaveCountOutput, int &last_node_count, const int
     leaveCountOutput = paletteSize * 2;
     last_node_count = paletteSize * 2;
   }
-  
+
 }
 
 void Node::KillLastLevel()

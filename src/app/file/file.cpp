@@ -903,7 +903,7 @@ void FileOp::postLoad()
       base::SharedPtr<Palette> palette(
         render::create_palette_from_sprite(
           sprite, frame_t(0), sprite->lastFrame(), true,
-          nullptr, nullptr, Preferences::instance().experimental.newBlend()));
+          nullptr, nullptr, Preferences::instance().experimental.newBlend(), false));
 
       sprite->resetPalettes();
       sprite->setPalette(palette.get(), false);

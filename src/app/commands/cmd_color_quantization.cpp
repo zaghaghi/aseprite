@@ -113,13 +113,14 @@ void ColorQuantizationCommand::onExecute(Context* context)
     ContextReader reader(context);
     SpriteJob job(reader, "Color Quantization");
     const bool newBlend = Preferences::instance().experimental.newBlend();
+    const bool octree = window.octree()->isSelected();
     job.startJobWithCallback(
-      [sprite, withAlpha, &tmpPalette, &job, newBlend]{
+      [sprite, withAlpha, &tmpPalette, &job, newBlend, octree]{
         render::create_palette_from_sprite(
           sprite, 0, sprite->lastFrame(),
           withAlpha, &tmpPalette,
           &job,
-          newBlend);     // SpriteJob is a render::TaskDelegate
+          newBlend, octree);     // SpriteJob is a render::TaskDelegate
       });
     job.waitJob();
     if (job.isCanceled())
